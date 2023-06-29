@@ -26,15 +26,5 @@ if __name__ == "__main__":
     start_app()
 
 
-#TODO: test with empty repo
-
-
-"""Concerns: 
-the user should update their personal profile? is that mean they should have update their information on 
-github: atm change github information looks  not possible by the github api, got error which not covered in the api 
-documentation(can be done with selenium I think but didn't try ) and if it's the case what create from crud should 
-does? 
-Or just upload their information to the app and the app will store it in the db? I have implemented this way, 
-and they also can create new users and update their information."""
 
 
