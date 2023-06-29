@@ -89,6 +89,31 @@ class TestRoutes(TestBase):
         self.assertEqual(data['email'], 'test@test.com')
 
     @patch.object(modules.api.app, 'check_auth', return_value=True)
+    def test_get_users(self, mock_check_auth):
+        mock_check_auth.return_value = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+
+        user = User(name='test', email='test@test.com')
+        db.session.add(user)
+        db.session.commit()
+        response = self.client.get(f'/users')
+        self.assertEqual(response.status_code, 200)
+        data = response.get_json()
+        self.assertEqual(data[0]['name'], 'test')
+        self.assertEqual(data[0]['email'], 'test@test.com')
+
+    @patch.object(modules.api.app, 'check_auth', return_value=False)
+    def test_get_users_auth(self, mock_check_auth):
+        mock_check_auth.return_value = False
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+
+        user = User(name='test', email='test@test.com')
+        db.session.add(user)
+        db.session.commit()
+        response = self.client.get(f'/users')
+        self.assertEqual(response.status_code, 401)
+
+    @patch.object(modules.api.app, 'check_auth', return_value=True)
     def test_get_user_invalid_id(self, mock_check_auth):
         mock_check_auth.return_value = True
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'

@@ -62,6 +62,16 @@ paths:
           description: Unauthorized - User not authenticated.
         "404":
           description: Not Found - User with the given ID not found.
+  /users:
+    get:
+      summary: Retrieves all users
+      description: Retrieves a user by their ID.
+      responses:
+        "200":
+          description: JSON object containing the user details.
+        "401":
+          description: Unauthorized - User not authenticated.
+
     put:
       summary: Updates a user by ID
       description: Updates a user by their ID.

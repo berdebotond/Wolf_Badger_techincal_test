@@ -107,6 +107,11 @@ Description: Retrieves a user by their ID.
 Path Parameter: id - ID of the user to retrieve.
 Response: JSON object containing the user details.
 
+GET /users}
+
+Description: Retrieves all user.
+Response: JSON array containing all user details.
+
 
 PUT /user/{id}
 

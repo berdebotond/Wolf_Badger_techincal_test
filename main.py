@@ -26,9 +26,7 @@ if __name__ == "__main__":
     start_app()
 
 
-#TODO: Create initial user afte rgithub login
-#TODO: Update json schema for user
-#TODO: test with db
+#TODO: test with empty repo
 
 
 """Concerns: 
