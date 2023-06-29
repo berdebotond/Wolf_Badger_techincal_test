@@ -34,7 +34,7 @@
                 "version": "V11"
               },
               "host": "localhost:5000",
-              "path": "/user/1"
+              "path": "/user/2"
             },
             "id": "61613d91-4ace-4960-8970-e4c6507701fa",
             "name": "delete_user_info",
@@ -67,10 +67,42 @@
                 "version": "V11"
               },
               "host": "localhost:5000",
-              "path": "/user/1"
+              "path": "/user/7"
             },
             "id": "88fa073b-1015-4778-b9ac-171ad5d0fca1",
             "name": "get User info",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:5000",
+              "path": "/users"
+            },
+            "id": "3e6e3c25-9158-4d10-a5d2-7db8cc098021",
+            "name": "get all user",
             "headers": []
           }
         },
@@ -101,7 +133,7 @@
                 "version": "V11"
               },
               "host": "localhost:5000",
-              "path": "/user/1"
+              "path": "/user/7"
             },
             "id": "e747c842-efc0-4388-aa69-7d8f7c917617",
             "name": "update user email",

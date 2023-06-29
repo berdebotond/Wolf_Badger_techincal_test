@@ -81,7 +81,7 @@ def login():
     except exc.IntegrityError as e:
         logging.warning(jsonify({"warning": str(e)}))
 
-    return f'You are {resp_data["login"]} on GitHub with id {user.id}', HTTPStatus.OK
+    return f'You are {resp_data["login"]} on GitHub', HTTPStatus.OK
 
 
 

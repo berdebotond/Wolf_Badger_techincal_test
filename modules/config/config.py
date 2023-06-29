@@ -26,3 +26,6 @@ class Config:
 
 
 cfg = Config()
+if not cfg.GITHUB_CLIENT_ID or not cfg.GITHUB_CLIENT_SECRET:
+    raise ValueError("GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET is not set, please create a .env file or add them to "
+                     "the environment variables.")
