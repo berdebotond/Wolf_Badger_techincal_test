@@ -50,13 +50,13 @@ Tested with postgresql and sqlite3
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/yourrepository.git
+git clone https://github.com/botondberde/Wolf_Badger_techincal_test.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd yourrepository
+cd Wolf_Badger_techincal_test
 ```
 
 3. Install the dependencies:
@@ -107,7 +107,7 @@ Description: Retrieves a user by their ID.
 Path Parameter: id - ID of the user to retrieve.
 Response: JSON object containing the user details.
 
-GET /users}
+GET /users
 
 Description: Retrieves all user.
 Response: JSON array containing all user details.
@@ -150,5 +150,5 @@ import the file `wolf_badger_talend_api.json` in the plugin
 
 Navigate to `http://localhost:5000` in your web browser. From there, you can log in with GitHub
 
-After the login you're able to execute the tests
+After the login you're able to execute the requests
 
