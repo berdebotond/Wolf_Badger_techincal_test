@@ -1,0 +1,201 @@
+openapi: 3.0.1
+info:
+  title: GitHub OAuth Flask Application API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /login:
+    get:
+      description: Initiates the GitHub account login process using Flask Dance.
+      responses:
+        "302":
+          content: {}
+          description: Redirects the user to the GitHub login page.
+      summary: Initiates the GitHub OAuth login process
+      x-accepts: application/json
+  /login/github/authorized:
+    get:
+      description: Retrieves the access token after the user is redirected back from
+        GitHub.
+      responses:
+        "302":
+          content: {}
+          description: Redirects the user to the profile page.
+      summary: Callback endpoint for GitHub OAuth authorization
+      x-accepts: application/json
+  /profile:
+    get:
+      description: Fetches the user's profile information from GitHub.
+      responses:
+        "200":
+          content: {}
+          description: JSON object containing the user's profile information.
+        "401":
+          content: {}
+          description: Unauthorized - User not authenticated.
+      summary: Retrieves the user profile information
+      x-accepts: application/json
+  /user:
+    post:
+      description: Creates a new user if the user is authenticated.
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UserInput'
+        description: JSON object representing the user details.
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: The ID of the created user.
+        "400":
+          content: {}
+          description: Bad Request - Invalid input data or missing required fields.
+        "401":
+          content: {}
+          description: Unauthorized - User not authenticated.
+      summary: Creates a new user
+      x-codegen-request-body-name: user
+      x-contentType: '*/*'
+      x-accepts: application/json
+  /user/{id}:
+    delete:
+      description: Deletes a user by their ID.
+      parameters:
+      - description: ID of the user to delete.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "204":
+          content: {}
+          description: Empty response with a success status.
+        "401":
+          content: {}
+          description: Unauthorized - User not authenticated.
+        "404":
+          content: {}
+          description: Not Found - User with the given ID not found.
+      summary: Deletes a user by ID
+      x-accepts: application/json
+    get:
+      description: Retrieves a user by their ID.
+      parameters:
+      - description: ID of the user to retrieve.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: JSON object containing the user details.
+        "401":
+          content: {}
+          description: Unauthorized - User not authenticated.
+        "404":
+          content: {}
+          description: Not Found - User with the given ID not found.
+      summary: Retrieves a user by ID
+      x-accepts: application/json
+    put:
+      description: Updates a user by their ID.
+      parameters:
+      - description: ID of the user to update.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UserInput'
+        description: JSON object representing the user details to be updated.
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: JSON object containing the updated user details.
+        "400":
+          content: {}
+          description: Bad Request - Invalid input data or missing required fields.
+        "401":
+          content: {}
+          description: Unauthorized - User not authenticated.
+        "404":
+          content: {}
+          description: Not Found - User with the given ID not found.
+      summary: Updates a user by ID
+      x-codegen-request-body-name: user
+      x-contentType: '*/*'
+      x-accepts: application/json
+  /logs/error:
+    get:
+      description: Retrieves error logs from the application.
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/ErrorLog'
+                type: array
+          description: JSON array containing error log entries.
+      summary: Retrieves error logs
+      x-accepts: '*/*'
+components:
+  schemas:
+    User:
+      properties:
+        id:
+          format: int64
+          type: integer
+        login:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+      type: object
+    UserInput:
+      example:
+        name: name
+        location: location
+        login: login
+        email: email
+      properties:
+        login:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        location:
+          type: string
+      type: object
+    ErrorLog:
+      example:
+        level: level
+        message: message
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        timestamp:
+          format: date-time
+          type: string
+        message:
+          type: string
+        level:
+          type: string
+      type: object
+x-original-swagger-version: "2.0"
+
